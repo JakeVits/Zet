@@ -1,0 +1,7 @@
+{
+  "name": "zet",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "react"
+}
