@@ -16,9 +16,9 @@
     --border-color: rgb(224, 205, 31);
     color: rgb(204, 198, 198);
 }
-.text-area{
-    margin-top: -5%;    
-}
+/* .text-area{
+    background-color: ;
+} */
 ion-icon{
     font-size: 18px;
     color: lightgray;
@@ -42,5 +42,5 @@ ion-icon{
     justify-content: center;
 }
 .report-update{
-padding-bottom: 10px;
+    padding-bottom: 10px;
 }

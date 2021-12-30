@@ -12,30 +12,32 @@ import {
   IonToolbar,
   IonIcon,
   IonTextarea,
-  IonToast
+  IonToast,
 } from "@ionic/react";
 import React, { useState } from "react";
 import AppTabs from "../AppTabs";
 import emailjs from 'emailjs-com'
-import {personOutline, mail, createOutline, text} from "ionicons/icons";
+import {personOutline, mail, createOutline} from "ionicons/icons";
 import '../theme/report.css'
 
 const Report: React.FC = () => {
-  const [message, setMessage] = useState(false)
+  const [network, setNetwork] = useState({isOpened: false, color: '', message: ''})
   function sendEmail(e:any){
-      e.preventDefault()
+      e.preventDefault()    
       emailjs.sendForm('09250432059', 'template_mqzfodz', e.target, 'user_oQ5tsYdAt8YmjW6fB20Ut')
-      .then((result) => {
+      .then((result) => {         
+          setNetwork({...network, isOpened: true, color: 'success', message: 'Email is sent successfully'})
           console.log(result.text);
-      }, (error) => {
+      },(error) => {
           console.log(error.text);
+          setNetwork({...network, isOpened: true, color: 'danger', 
+          message: 'Email is not sent. Please check your connection and try again.'})
       })
       var form:any = document.querySelector('.report-form') || null
       form.reset()
       var textarea:any = document.querySelector('.text-area') || null
       textarea.value = ''
-      setMessage(true)
-      setTimeout(() => setMessage(false), 2000)
+      setTimeout(() => setNetwork({...network, isOpened: false, color: '', message: ''}), 3000)
   }
   return (
     <IonPage>
@@ -73,7 +75,7 @@ const Report: React.FC = () => {
             <IonButton className='btn' type='submit'>Report</IonButton>
           </form>       
         </IonCard>       
-        <IonToast color='success' position='bottom' isOpen={message} message='Email is sent successfully'/>
+        <IonToast color={network.color} position='bottom' isOpen={network.isOpened} message={network.message}/>
       </IonContent>
     </IonPage>
   );
