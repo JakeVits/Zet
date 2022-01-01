@@ -1,5 +1,4 @@
 # Zet
-Inventory App
 
 This is a simple inventory app that allows you to manage the items. The main modules in this app are - 
 (1) CRUD modules
